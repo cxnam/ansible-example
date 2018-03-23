@@ -1,0 +1,5 @@
+[develop]
+1.1.1.1
+[develop:vars]
+ansible_ssh_user=abc
+ansible_sudo_pass=abcxyz

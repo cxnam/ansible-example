@@ -1,0 +1,6 @@
+- hosts: develop
+  become: yes
+  roles:
+#    - common
+    - checkout
+    - staging

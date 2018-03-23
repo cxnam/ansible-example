@@ -1,0 +1,32 @@
+
+
+- name: Log into private registry and force re-authorization
+  docker_login:
+    registry: abc.xyz.abc
+    username: abc
+    password: 1234556
+    reauthorize: yes
+
+- name: Remove container from all networks
+  docker_container:
+    name: "{{ container }}"
+    purge_networks: yes
+
+- name: start new container
+  docker_container:
+    name: "{{ container }}"
+    image: "{{ docker_image }}:{{ app_version }}"
+    pull: yes
+    state: started
+    restart: yes
+    ports:
+     - "9196:9898"
+    env:
+      REDIS__HOST: 1.1.1.1
+      REDIS__DATABASE: 0
+      PROFILER__STATSD_ADDRESS: 1.1.1.1:8125
+      ENCRYPTION__JWT_SECRET: asdfasdf4934
+      ENCRYPTION__JWT_POL: asdfasdfasdf
+      ENCRYPTION__OID_KEY: ghnta@sdf
+      API__ADDRESS: http://1.1.1.1:8080
+      MONGODB__HOST: 1.1.1.1

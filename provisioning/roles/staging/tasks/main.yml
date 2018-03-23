@@ -1,0 +1,30 @@
+
+
+- name: Log into private registry and force re-authorization
+  docker_login:
+    registry: abc.xyz.abc
+    username: asdfasdf
+    password: asdfasdf
+    reauthorize: yes
+
+- name: Remove container from all networks
+  docker_container:
+    name: "{{ container }}"
+    purge_networks: yes
+
+- name: Build an image and push it to a private repo
+  docker_image:
+    path: "{{ source_dir }}"
+    name: "{{ docker_image }}"
+    tag: "{{ app_version }}"
+    push: yes
+
+- name: start new container
+  docker_container:
+    name: "{{ container }}"
+    image: "{{ docker_image }}:{{ app_version }}"
+    state: started
+    restart: yes
+    ports:
+     - "9196:9898"
+

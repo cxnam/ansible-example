@@ -1,0 +1,5 @@
+- git:
+    repo: "{{ source_repo }}"
+    dest: "{{ source_dir }}"
+    clone: yes
+    update: yes

@@ -1,0 +1,7 @@
+source_dir: /var/app/demo
+private_key_pair: ~/.ssh/id_rsa
+source_repo: 'github.com/asbdca'
+app_version: 1.0.5
+stable_version: 1.0.0
+docker_image: go-lang
+container: golang-cont-name
